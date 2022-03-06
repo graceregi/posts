@@ -1,0 +1,15 @@
+.textStyle{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 150px;
+}
+.textStyleForHeading:hover {
+    overflow:visible;
+ }
+.textStyleForHeading{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 150px;
+}
