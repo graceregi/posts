@@ -9,10 +9,10 @@ import {
   } from "@ant-design/icons";
 import EditPosts from './EditPosts';
 
-const ListOfPosts=()=>{
+const ListOfPosts = () => {
 
 const [listOfAllPosts, setlistOfAllPosts] = useState([]);
-const [IsUploadModalVisible,setIsUploadModalVisible] = useState(false);
+const [isUploadModalVisible,setIsUploadModalVisible] = useState(false); // recommentted naming standard for state variable is camelCase, PascalCase better to be avoid
 const [userId,setuserId] = useState(0)
 
 useEffect( () => {
@@ -27,7 +27,7 @@ const handleEditCancel = () => {
     setIsUploadModalVisible(false);
 };
 
-const toFetchListOfAllPosts = () => {
+const toFetchListOfAllPosts = () => { // This method should be call after a successful edit post
     axios.
     get("https://jsonplaceholder.typicode.com/posts")
     .then((res)=>{
@@ -109,8 +109,9 @@ const onSearch = value => {
             
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             {listOfAllPosts.map((item, index)=>{
-                if (((index) % 2) === 1) {
-                return(<Col gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} span={12} style={{marginTop:'23px' , paddingLeft: '1%', paddingRight:'33%'}} key={index}>
+                if (((index) % 2) === 1) { // This could be better using conditional style instead of conditional render
+                    // style={ index % 2 === 1 ? {marginTop:'23px' , paddingLeft: '1%', paddingRight:'33%'} : {marginTop:'23px', paddingRight:'43%'}}
+                return(<Col gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} span={12} style={ index % 2 === 1 ? {marginTop:'23px' , paddingLeft: '1%', paddingRight:'33%'} : {marginTop:'23px', paddingRight:'43%'}} key={index}>
                     <Card size="default" title={item.title}  style={{ width: 500 , marginLeft:'13%',fontFamily: 'cursive',}}>
                         <Row>
                             <Col span={20}>
@@ -156,7 +157,7 @@ const onSearch = value => {
 
         <EditPosts 
             userId={userId}
-            isModalVisible={IsUploadModalVisible}
+            isModalVisible={isUploadModalVisible}
             handleOk={handleEditOk}
             handleCancel={handleEditCancel}
         />
